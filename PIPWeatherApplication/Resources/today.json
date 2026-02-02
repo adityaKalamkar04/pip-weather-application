@@ -1,0 +1,75 @@
+{
+  "status": "success",
+  "data": {
+    "timestamp": "9:41",
+    "user": {
+      "name": "Aditya Kalamkar",
+      "greeting": "Welcome back",
+      "email": "fullname@email.com"
+    },
+    "date": {
+      "display": "Today May 8",
+      "full_date": "May 8"
+    },
+    "today_items": [
+      {
+        "id": "item1",
+        "type": "project",
+        "title": "Driveway Project",
+        "status": "Open",
+        "description": "Driveway-related task for today"
+      },
+      {
+        "id": "item2",
+        "type": "notification",
+        "title": "Notifications",
+        "message": "It's been 13 hours since you poured that concrete. Time to check on the progress.",
+        "action": "Open",
+        "urgency_hint": "time-sensitive reminder"
+      }
+    ],
+    "weather_forecast": {
+      "days": [
+        {
+          "id": "day1",
+          "day": "MON",
+          "temperature": "31°",
+          "unit": "celsius",
+          "icon": "sun.max.fill"
+        },
+        {
+          "id": "day2",
+          "day": "TUE",
+          "temperature": "28°",
+          "unit": "celsius",
+          "icon": "cloud.sun.fill"
+        },
+        {
+          "id": "day3",
+          "day": "WEN",
+          "temperature": "22°",
+          "unit": "celsius",
+          "icon": "cloud.sun.fill"
+        },
+        {
+          "id": "day4",
+          "day": "THU",
+          "temperature": "26°",
+          "unit": "celsius",
+          "icon": "sun.max.fill"
+        }
+      ],
+      "note": "Likely a 4-day weather forecast starting from Monday"
+    },
+    "navigation": {
+      "tabs": ["Today", "Projects", "Take Photo", "Ask"],
+      "active_tab": "Today"
+    },
+    "metadata": {
+      "source": "screenshot",
+      "interpreted_layout": "Mobile app dashboard view",
+      "screen_title": "Today",
+      "context": "Dashboard showing daily tasks, notifications, and weather"
+    }
+  }
+}

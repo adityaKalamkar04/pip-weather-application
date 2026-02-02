@@ -1,0 +1,62 @@
+{
+  "status": "success",
+  "data": {
+    "timestamp": "9:41",
+    "user": {
+      "name": "Aditya Kalamkar",
+      "greeting": "Welcome back",
+      "email": "fullname@email.com"
+    },
+    "projects": [
+      {
+        "id": "proj1",
+        "name": "Driveway Project",
+        "status": "Open",
+        "tags": ["All", "Home", "DIY"],
+        "description": "Driveway-related project",
+        "imageName": "driveway_project",
+        "createdAt": "2024-05-05",
+        "updatedAt": "2024-05-08"
+      },
+      {
+        "id": "proj2",
+        "name": "Sandbox Project",
+        "status": "Open",
+        "tags": ["All", "Home"],
+        "description": "Sandbox-related project",
+        "imageName": "sandbox_project",
+        "createdAt": "2024-05-03",
+        "updatedAt": "2024-05-07"
+      },
+      {
+        "id": "proj3",
+        "name": "Patio Project",
+        "status": "Open",
+        "tags": ["All", "Home", "DIY"],
+        "description": "Patio-related project",
+        "imageName": "patio_project",
+        "createdAt": "2024-05-01",
+        "updatedAt": "2024-05-06"
+      },
+      {
+        "id": "proj4",
+        "name": "Backyard Project",
+        "status": "Open",
+        "tags": ["All", "DIY"],
+        "description": "Backyard-related project",
+        "imageName": "backyard_project",
+        "createdAt": "2024-04-28",
+        "updatedAt": "2024-05-05"
+      }
+    ],
+    "navigation": {
+      "tabs": ["Today", "Projects", "Take Photo", "Ask"],
+      "active_tab": "Projects"
+    },
+    "metadata": {
+      "source": "screenshot",
+      "interpreted_layout": "Mobile app interface",
+      "screen_title": "Projects"
+    }
+  }
+}
