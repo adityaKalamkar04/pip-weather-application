@@ -24,7 +24,7 @@ final class AppEnvironment: ObservableObject {
     
     // MARK: - Setup
     private func setupEnvironment() {
-        DeviceDetector.log("Green Tag App Environment initialized", type: .info)
+        DeviceDetector.log("Weather App Environment initialized", type: .info)
         DeviceDetector.log("Device: \(DeviceDetector.deviceInfo)", type: .info)
         
         #if targetEnvironment(simulator)

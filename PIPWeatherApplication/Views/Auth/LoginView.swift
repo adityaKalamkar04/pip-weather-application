@@ -46,12 +46,12 @@ struct LoginView: View {
                     Spacer(minLength: 40)
                     
                     // Logo
-                    Image(systemName: "truck.box.fill")
+                    Image(systemName: "sun.snow")
                         .font(.system(size: 80))
                         .foregroundColor(.greenTagPrimary)
                         .padding(.bottom, 8)
                     
-                    Text("GREEN TAG")
+                    Text("Weather App")
                         .font(.system(size: 18, weight: .bold))
                         .foregroundColor(.textPrimary)
                         .padding(.bottom, 24)

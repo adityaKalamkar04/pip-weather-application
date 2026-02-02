@@ -14,8 +14,6 @@ final class ProjectsViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
-    private var cancellables = Set<AnyCancellable>()
-    
     func loadProjects() {
         isLoading = true
         errorMessage = nil

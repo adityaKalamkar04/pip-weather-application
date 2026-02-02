@@ -16,8 +16,6 @@ final class TodayViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
-    private var cancellables = Set<AnyCancellable>()
-    
     func loadToday() {
         isLoading = true
         errorMessage = nil

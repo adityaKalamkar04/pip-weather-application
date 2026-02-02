@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Color {
-    // MARK: - Green Tag Primary Colors
+    // MARK: - Weather App Primary Colors
     static let greenTagPrimary = Color(red: 0.42, green: 0.55, blue: 0.22) // Olive green for buttons
     static let greenTagLight = Color(red: 0.88, green: 0.95, blue: 0.82) // Light green background
     static let greenTagDark = Color(red: 0.32, green: 0.42, blue: 0.16) // Dark green accents
