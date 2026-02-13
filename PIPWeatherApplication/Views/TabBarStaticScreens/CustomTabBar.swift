@@ -20,9 +20,7 @@ struct CustomTabBar: View {
         .padding(.horizontal, 8)
         .padding(.top, 8)
         .padding(.bottom, 20)
-        .background(
-            colorScheme == .dark ? Color.tabBarBackgroundDark : Color.tabBarBackground
-        )
+        .background(Color.tabBarBackground)
         .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: -5)
     }
     

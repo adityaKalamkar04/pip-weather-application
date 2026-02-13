@@ -10,6 +10,7 @@ import SwiftUI
 struct NotificationDetailView: View {
     let notification: AppNotification
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var appEnvironment: AppEnvironment
     
     var body: some View {
         ScrollView {
@@ -78,7 +79,8 @@ struct NotificationDetailView: View {
                     }
                     
                     Button(action: {
-                        // View related project
+                        // Navigate directly to Projects tab
+                        appEnvironment.selectedTab = .projects
                     }) {
                         Text("View Project")
                             .font(.system(size: 16, weight: .semibold))
@@ -107,5 +109,6 @@ struct NotificationDetailView: View {
             isUrgent: true,
             icon: "bell.fill"
         ))
+        .environmentObject(AppEnvironment.shared)
     }
 }

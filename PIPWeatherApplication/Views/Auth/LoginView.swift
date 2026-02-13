@@ -30,21 +30,6 @@ struct LoginView: View {
                 VStack(spacing: 24) {
                     Spacer(minLength: 60)
                     
-                    // Back button
-                    HStack {
-                        Button(action: {
-                            // Back action
-                        }) {
-                            Image(systemName: "arrow.left")
-                                .font(.system(size: 24))
-                                .foregroundColor(.textPrimary)
-                        }
-                        Spacer()
-                    }
-                    .padding(.horizontal)
-                    
-                    Spacer(minLength: 40)
-                    
                     // Logo
                     Image(systemName: "sun.snow")
                         .font(.system(size: 80))
@@ -58,11 +43,11 @@ struct LoginView: View {
                     
                     // Welcome text
                     VStack(spacing: 8) {
-                        Text("Welcome back")
+                        Text("Welcome to")
                             .font(.system(size: 32, weight: .bold))
                             .foregroundColor(.textPrimary)
                         
-                        Text("Glad to see you again!")
+                        Text("What's Your Weather?")
                             .font(.system(size: 16, weight: .regular))
                             .foregroundColor(.textSecondary)
                     }
@@ -77,15 +62,17 @@ struct LoginView: View {
                                         .foregroundColor(.textTertiary)
                                 }
                                 .padding()
-                                .background(Color.white)
+                                .background(Color.cardBackground)
                                 .cornerRadius(12)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 12)
                                         .stroke(emailError.isEmpty ? Color.borderLight : Color.red, lineWidth: emailError.isEmpty ? 1 : 2)
                                 )
                                 .autocapitalization(.none)
+                                .autocorrectionDisabled(true)
                                 .keyboardType(.emailAddress)
-                                .onChange(of: email) { _ in
+                                .textContentType(.emailAddress)
+                                .onChange(of: email) {
                                     if !emailError.isEmpty {
                                         emailError = ""
                                     }
@@ -113,12 +100,15 @@ struct LoginView: View {
                                             Text("Password")
                                                 .foregroundColor(.textTertiary)
                                         }
+                                        .autocorrectionDisabled(true)
+                                        .textContentType(.password)
                                 } else {
                                     SecureField("", text: $password)
                                         .placeholder(when: password.isEmpty) {
                                             Text("Password")
                                                 .foregroundColor(.textTertiary)
                                         }
+                                        .textContentType(.password)
                                 }
                                 
                                 Button(action: {
@@ -129,13 +119,13 @@ struct LoginView: View {
                                 }
                             }
                             .padding()
-                            .background(Color.white)
+                            .background(Color.cardBackground)
                             .cornerRadius(12)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
                                     .stroke(passwordError.isEmpty ? Color.borderGreen : Color.red, lineWidth: 2)
                             )
-                            .onChange(of: password) { _ in
+                            .onChange(of: password) {
                                 if !passwordError.isEmpty {
                                     passwordError = ""
                                 }

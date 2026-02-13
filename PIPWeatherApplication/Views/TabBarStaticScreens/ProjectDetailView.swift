@@ -10,6 +10,7 @@ import SwiftUI
 struct ProjectDetailView: View {
     let project: Project
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var appEnvironment: AppEnvironment
     
     var body: some View {
         ScrollView {
@@ -95,7 +96,8 @@ struct ProjectDetailView: View {
                     // Action buttons
                     HStack(spacing: 12) {
                         Button(action: {
-                            // Take photo action
+                            // Navigate directly to Take Photo tab
+                            appEnvironment.selectedTab = .takePhoto
                         }) {
                             HStack {
                                 Image(systemName: "camera.fill")
@@ -150,5 +152,6 @@ struct ProjectDetailView: View {
             imageUrl: nil,
             location: "123 Main St, San Francisco"
         ))
+        .environmentObject(AppEnvironment.shared)
     }
 }

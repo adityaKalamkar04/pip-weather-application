@@ -13,7 +13,7 @@ struct AskView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.white
+                Color.backgroundLight
                     .ignoresSafeArea()
             
             VStack(spacing: 0) {
@@ -39,7 +39,7 @@ struct AskView: View {
                             TextField("Type your question here...", text: $question, axis: .vertical)
                                 .lineLimit(5...10)
                                 .padding()
-                                .background(Color.white)
+                                .background(Color.cardBackground)
                                 .cornerRadius(12)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 12)
@@ -86,7 +86,7 @@ struct AskView: View {
                                             .foregroundColor(.textSecondary)
                                     }
                                     .padding()
-                                    .background(Color.white)
+                                    .background(Color.cardBackground)
                                     .cornerRadius(12)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 12)

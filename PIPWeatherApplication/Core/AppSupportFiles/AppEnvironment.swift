@@ -29,6 +29,13 @@ final class AppEnvironment: ObservableObject {
         
         #if targetEnvironment(simulator)
         DeviceDetector.log("Running on Simulator", type: .warning)
+        DeviceDetector.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━", type: .info)
+        DeviceDetector.log("ℹ️  EXPECTED SIMULATOR WARNINGS (Safe to Ignore):", type: .info)
+        DeviceDetector.log("   • Haptic feedback errors (CHHapticPattern)", type: .info)
+        DeviceDetector.log("   • Auto Layout keyboard constraints", type: .info)
+        DeviceDetector.log("   • Keyboard candidate accumulator warnings", type: .info)
+        DeviceDetector.log("   These are iOS system issues, not app bugs!", type: .info)
+        DeviceDetector.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━", type: .info)
         #else
         DeviceDetector.log("Running on Real Device", type: .success)
         #endif

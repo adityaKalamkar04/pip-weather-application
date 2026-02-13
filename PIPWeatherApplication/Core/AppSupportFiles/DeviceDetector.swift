@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct DeviceDetector {
     // MARK: - Device Type Detection
@@ -29,14 +30,9 @@ struct DeviceDetector {
     }
     
     static var deviceModelName: String {
-        var systemInfo = utsname()
-        uname(&systemInfo)
-        let machineMirror = Mirror(reflecting: systemInfo.machine)
-        let identifier = machineMirror.children.reduce("") { identifier, element in
-            guard let value = element.value as? Int8, value != 0 else { return identifier }
-            return identifier + String(UnicodeScalar(UInt8(value)))
-        }
-        return identifier
+        // Using UIDevice for device information
+        let device = UIDevice.current
+        return device.model + " - " + device.systemName + " " + device.systemVersion
     }
     
     // MARK: - Debug Logger

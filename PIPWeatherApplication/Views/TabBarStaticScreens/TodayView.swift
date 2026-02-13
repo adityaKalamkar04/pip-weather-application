@@ -9,11 +9,12 @@ import SwiftUI
 
 struct TodayView: View {
     @StateObject private var viewModel = TodayViewModel()
+    @EnvironmentObject var appEnvironment: AppEnvironment
     
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.white
+                Color.backgroundLight
                     .ignoresSafeArea()
                 
                 VStack(spacing: 0) {
@@ -146,6 +147,10 @@ struct TodayView: View {
 struct ProjectTodayCard: View {
     let item: TodayItem
     
+    var isDrivewayProject: Bool {
+        item.title.lowercased().contains("driveway")
+    }
+    
     var body: some View {
         NavigationLink(destination: ProjectDetailView(project: Project(
             id: item.id,
@@ -157,9 +162,9 @@ struct ProjectTodayCard: View {
             location: nil
         ))) {
             ZStack(alignment: .bottomLeading) {
-                // Background image
+                // Background - Orange for Driveway Project, gray for others
                 Rectangle()
-                    .fill(Color.gray.opacity(0.3))
+                    .fill(isDrivewayProject ? Color.orange : Color.gray.opacity(0.3))
                     .frame(height: 260)
                     .cornerRadius(16)
                 
@@ -202,16 +207,13 @@ struct ProjectTodayCard: View {
 // MARK: - Notification Card
 struct NotificationCard: View {
     let item: TodayItem
+    @EnvironmentObject var appEnvironment: AppEnvironment
     
     var body: some View {
-        NavigationLink(destination: NotificationDetailView(notification: AppNotification(
-            id: item.id,
-            title: item.title,
-            message: item.message ?? "",
-            time: item.time ?? "",
-            isUrgent: item.isUrgent,
-            icon: "bell.fill"
-        ))) {
+        Button(action: {
+            // Navigate directly to Projects tab
+            appEnvironment.selectedTab = .projects
+        }) {
             VStack(alignment: .leading, spacing: 16) {
                 HStack(spacing: 8) {
                     Image(systemName: "bell.fill")
@@ -235,11 +237,15 @@ struct NotificationCard: View {
                     .lineSpacing(4)
                 
                 HStack {
-                    Text(item.action ?? "View Details")
+                    Text("View Project")
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundColor(.white)
                     
                     Spacer()
+                    
+                    Image(systemName: "arrow.right")
+                        .font(.system(size: 14))
+                        .foregroundColor(.white)
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 48)
@@ -303,4 +309,5 @@ struct WeatherForecastView: View {
 
 #Preview {
     TodayView()
+        .environmentObject(AppEnvironment.shared)
 }

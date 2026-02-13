@@ -20,6 +20,9 @@ final class TodayViewModel: ObservableObject {
         isLoading = true
         errorMessage = nil
         
+        // Set current date automatically
+        self.dateDisplay = Date().toShortDateString()
+        
         let result = JSONLoader.load(TodayResponse.self, from: "today")
         
         switch result {
@@ -27,7 +30,6 @@ final class TodayViewModel: ObservableObject {
             self.todayItems = response.data.todayItems
             self.weatherForecast = response.data.weatherForecast
             self.user = response.data.user
-            self.dateDisplay = response.data.date.fullDate
             self.isLoading = false
             DeviceDetector.log("Loaded today items: \(todayItems.count)", type: .success)
             

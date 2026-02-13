@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProjectsView: View {
     @StateObject private var viewModel = ProjectsViewModel()
+    @EnvironmentObject var appEnvironment: AppEnvironment
     @State private var selectedFilter: ProjectFilter = .all
     
     enum ProjectFilter: String, CaseIterable {
@@ -20,7 +21,7 @@ struct ProjectsView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.white
+                Color.backgroundLight
                     .ignoresSafeArea()
                 
                 VStack(spacing: 0) {
@@ -42,7 +43,7 @@ struct ProjectsView: View {
                             .font(.system(size: 24))
                             .foregroundColor(.textPrimary)
                             .frame(width: 44, height: 44)
-                            .background(Color.white)
+                            .background(Color.cardBackground)
                             .clipShape(Circle())
                             .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
                     }
@@ -180,22 +181,31 @@ struct ProjectsView: View {
 struct FeaturedProjectCard: View {
     let project: Project
     
+    var isDrivewayProject: Bool {
+        project.name.lowercased().contains("driveway")
+    }
+    
+    var projectBackgroundColor: Color {
+        if project.name.lowercased().contains("driveway") {
+            return .orange
+        } else if project.name.lowercased().contains("sandbox") {
+            return .blue.opacity(0.7)
+        } else if project.name.lowercased().contains("patio") {
+            return .green.opacity(0.7)
+        } else if project.name.lowercased().contains("backyard") {
+            return .purple.opacity(0.7)
+        }
+        return .gray.opacity(0.5)
+    }
+    
     var body: some View {
         NavigationLink(destination: ProjectDetailView(project: project)) {
             ZStack(alignment: .bottomLeading) {
-                // Background image
+                // Background with project-specific colors
                 Rectangle()
-                    .fill(Color.gray.opacity(0.3))
+                    .fill(projectBackgroundColor)
                     .frame(height: 220)
                     .cornerRadius(16)
-                    .overlay(
-                        Image("driveway_project")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(height: 220)
-                            .clipped()
-                            .cornerRadius(16)
-                    )
                 
                 VStack(alignment: .leading) {
                     Spacer()
@@ -240,19 +250,18 @@ struct ProjectRowCard: View {
     var body: some View {
         NavigationLink(destination: ProjectDetailView(project: project)) {
             HStack(spacing: 12) {
-                // Project image
-                Rectangle()
-                    .fill(Color.gray.opacity(0.3))
-                    .frame(width: 100, height: 100)
-                    .cornerRadius(12)
-                    .overlay(
-                        Image(project.imageName ?? "")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 100, height: 100)
-                            .clipped()
-                            .cornerRadius(12)
-                    )
+                // Project image placeholder
+                ZStack {
+                    Rectangle()
+                        .fill(projectColor(for: project))
+                        .frame(width: 100, height: 100)
+                        .cornerRadius(12)
+                    
+                    // Project icon
+                    Image(systemName: "house.fill")
+                        .font(.system(size: 36))
+                        .foregroundColor(.white.opacity(0.8))
+                }
                 
                 VStack(alignment: .leading, spacing: 8) {
                     Text(project.name)
@@ -275,7 +284,7 @@ struct ProjectRowCard: View {
                     .frame(maxWidth: .infinity)
                     .frame(height: 36)
                     .padding(.horizontal, 12)
-                    .background(Color.white)
+                    .background(Color.cardBackground)
                     .cornerRadius(8)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
@@ -286,14 +295,29 @@ struct ProjectRowCard: View {
             }
             .frame(height: 100)
             .padding(8)
-            .background(Color.white)
+            .background(Color.cardBackground)
             .cornerRadius(12)
             .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 2)
         }
         .buttonStyle(PlainButtonStyle())
     }
+    
+    // Helper function to get color for each project
+    private func projectColor(for project: Project) -> Color {
+        if project.name.lowercased().contains("driveway") {
+            return .orange
+        } else if project.name.lowercased().contains("sandbox") {
+            return .blue.opacity(0.6)
+        } else if project.name.lowercased().contains("patio") {
+            return .green.opacity(0.6)
+        } else if project.name.lowercased().contains("backyard") {
+            return .purple.opacity(0.6)
+        }
+        return .gray.opacity(0.5)
+    }
 }
 
 #Preview {
     ProjectsView()
+        .environmentObject(AppEnvironment.shared)
 }
